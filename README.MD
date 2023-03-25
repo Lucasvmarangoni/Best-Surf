@@ -10,9 +10,10 @@
 
 <div align="justify">
 
-Projeto oferecido pelo desenvolvedor Waldemar Neto, do canal do YouTube <a href="https://www.youtube.com/@WaldemarNetoDevLab">Waldemar Neto - Dev Lab</a>
+Projeto oferecido pelo desenvolvedor Waldemar Neto, do canal do YouTube <a href="https://www.youtube.com/@WaldemarNetoDevLab">Waldemar Neto - Dev Lab</a>.
 
-É uma aplicação que monitora o clima nas praia e permite ao usuário cadastrar suas praias de interesses e monitora-las, além de receber informações úteis, para aproveitar ao máximo seu esporte.
+O projeto é uma aplicação que monitora o clima nas praia e permite ao usuário cadastrar suas praias de interesses e
+monitora-las, além de receber informações úteis, para aproveitar ao máximo seu esporte.
 
 Nesse projeto vou criar e rodar micro-serviços na cloud utilizando Node.js com Typescript seguindo as melhores práticas de desenvolvimento em um curso que vai do desenvolvimento a produção.
 
@@ -59,8 +60,6 @@ Originalmente o projeto usa Express e Jest, mas vou analisar durante o curso por
 
 </div>
 
-
 <br><br>
-
 
 - Inicio em 24/03/2023

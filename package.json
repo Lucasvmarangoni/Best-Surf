@@ -1,0 +1,29 @@
+{
+  "name": "best-surf",
+  "version": "1.0.0",
+  "description": "<div align=\"center\">",
+  "main": "index.js",
+  "scripts": {
+    "start": "yarn build && node dist/src/index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lucasvmarangoni/Best-Surf.git"
+  },
+  "keywords": [],
+  "author": "Lucas Vazzoller Marangoni",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lucasvmarangoni/Best-Surf/issues"
+  },
+  "homepage": "https://github.com/Lucasvmarangoni/Best-Surf#readme",
+  "devDependencies": {
+    "@types/module-alias": "^2.0.1",
+    "@types/node": "^18.15.7",
+    "typescript": "^5.0.2"
+  },
+  "dependencies": {
+    "module-alias": "^2.2.2"
+  }
+}
