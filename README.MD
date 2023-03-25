@@ -23,40 +23,24 @@ Nesse projeto vou criar e rodar micro-serviços na cloud utilizando Node.js com 
 
 <br><br>
 
-<table width="300px" align="center">
-      <caption> <h1 align="center">Tecnologias</h1> </caption>	         
-       <thead>                      
-               <th width="150px" style="text-align:center" colspan="1">Back-end</th>                  
-       </thead>
-       <tbody align="center">          
-           <tr>                           
-                <td colspan="1">TypeScript</th>                              
-           </tr>
-           <tr>             
-                 <td colspan="1">Node js</th>       
-           </tr>    
-            <tr>             
-                 <td colspan="1">Express</th>   
-            </tr>         
-            <tr>             
-                 <td colspan="1">MongoDB</th>          
-           </tr>       
-           <tr>             
-                 <td colspan="1">Mongoose</th>          
-           </tr>         
-            <tr>             
-                 <td colspan="1">Jest</th>   
-            </tr>  
-             <tr>             
-                 <td colspan="1">Supertest</th>   
-            </tr>  
-            <tr>             
-                 <td colspan="1">Github Actions</th>   
-            </tr>        
-       </tbody>
-</table>
+<div align="justify">
 
-Originalmente o projeto usa Express e Jest, mas vou analisar durante o curso por alterar e usar o Nest e Vitest.
+## Tecnologias
+
+- TypeScript
+- Node js
+- Express
+- MongoDB
+- Mongoose
+- Jest
+- Supertest
+- Github Actions
+
+Originalmente o projeto usa Express e Jest, mas vou analisar durante o curso por alterar e usar Nest e Vitest.
+
+
+</div>
+
 
 </div>
 
