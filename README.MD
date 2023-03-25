@@ -10,7 +10,7 @@
 
 <div align="justify">
 
-Projeto oferecido pelo desenvolvedor Waldemar Neto, do canal do YouTube <a href="https://www.youtube.com/@WaldemarNetoDevLab">Waldemar Neto - Dev Lab</a>.
+Projeto oferecido pelo canal do YouTube <a href="https://www.youtube.com/@WaldemarNetoDevLab">Waldemar Neto - Dev Lab</a>.
 
 O projeto é uma aplicação que monitora o clima nas praia e permite ao usuário cadastrar suas praias de interesses e
 monitora-las, além de receber informações úteis, para aproveitar ao máximo seu esporte.
@@ -37,6 +37,7 @@ Nesse projeto vou criar e rodar micro-serviços na cloud utilizando Node.js com 
 - Github Actions
 
 Originalmente o projeto usa Express e Jest, mas vou analisar durante o curso por alterar e usar Nest e Vitest.
+Decidi usar o Nest, mas não o vitest, portanto irei manter o Jest.
 
 </div>
 
