@@ -36,8 +36,6 @@ Nesse projeto vou criar e rodar micro-serviços na cloud utilizando Node.js com 
 - Supertest
 - Github Actions
 
-Originalmente o projeto usa Express e Jest, mas vou analisar durante o curso por alterar e usar Nest e Vitest.
-Decidi usar o Nest, mas não o vitest, portanto irei manter o Jest.
 
 </div>
 
