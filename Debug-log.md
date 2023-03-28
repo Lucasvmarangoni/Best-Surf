@@ -59,6 +59,8 @@ Acrescentei no package.json:
 Funcionou!
 Porem não consegui usar a mesma configuração no jest.config.js da pasta test no da parta root, pois não encontrava o tscondig.json. 
 
+    https://codingbeautydev.com/blog/javascript-dirname-is-not-defined-in-es-module-scope/
+
 Após resolver isso ocorreu o erro do jest não encontrar o modulo do module-alias.
 
     annot find module '@src/clients/stormGlass' from 'src/clients/__test__/stormGlass.test.ts'

@@ -29,18 +29,21 @@ Nesse projeto vou criar e rodar micro-serviços na cloud utilizando Node.js com 
 
 - TypeScript
 - Node js
-- Express 
-    - OvernightJS
+- Express
+  - OvernightJS
 - MongoDB
 - Mongoose
 - Jest
 - Supertest
 - Github Actions
 
-
 </div>
 
 </div>
+
+<br>
+
+## <a href="https://github.com/Lucasvmarangoni/Best-Surfing/blob/master/Debug-log.md" >Debug Log</a>
 
 <br><br>
 
