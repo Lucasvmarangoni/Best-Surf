@@ -1,5 +1,9 @@
 import { resolve } from 'path';
-// eslint-disable-next-line no-undef
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const root = resolve(__dirname);
 
 export const module = {
@@ -8,11 +12,18 @@ export const module = {
   testMatch: ['<rootDir>/src/**/*.test.ts'],
   testEnvironment: 'node',
   clearMocks: true,
-  preset: 'ts-jest',
+  transform: {
+    '^.+\\.(ts|tsx)$': [
+      'ts-jest',
+      {
+        tsconfig: 'tsconfig.json',
+      },
+    ],
+  },
   moduleNameMapper: {
-    '@src/(.*)': '<rootDir>/src/$1',
-    '@test/(.*)': '<rootDir>/test/$1',
-  }
+    '^@/(.*)$': '<rootDir>/src/$1',
+  },
+  transformIgnorePatterns: ['node_modules/(?!axios)'],
 };
 
-
+export default module;

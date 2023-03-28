@@ -12,5 +12,13 @@
   ],
   "globals": {
     "__dirname": true
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": [
+        ["@src", "./src"],
+        ["@test", "./test"]
+      ]
+    }
   }
 }
