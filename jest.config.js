@@ -21,7 +21,8 @@ export const module = {
     ],
   },
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1',
+    '@src/(.*)': '<rootDir>/src/$1',
+    '@test/(.*)': '<rootDir>/test/$1',
   },
   transformIgnorePatterns: ['node_modules/(?!axios)'],
 };

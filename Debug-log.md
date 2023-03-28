@@ -5,7 +5,6 @@ Por isso decidi acrescentar a este projeto o arquivo de Debug-log e compartilha-
 
 <br>
 
-
 # Log
 
 ## '__dirname' is not defined.eslintno-undef
@@ -31,7 +30,7 @@ Apaguei a pasta node_modules e instalei novamente.
 
     https://copyprogramming.com/howto/module-buffer-has-no-exported-member-blob
 
-Funcionou para mim usar:
+Funcionou usar:
 
     "devDependencies": {
     "@types/node": "^14.18.10",
@@ -56,17 +55,26 @@ Acrescentei no package.json:
 
     "type": "module",
 
-Funcionou!
-Porem não consegui usar a mesma configuração no jest.config.js da pasta test no da parta root, pois não encontrava o tscondig.json. 
+Porem não consegui usar a mesma configuração no jest.config.js da pasta test no da parta root, pois não encontrava o tsconfig.json. 
 
     https://codingbeautydev.com/blog/javascript-dirname-is-not-defined-in-es-module-scope/
 
 Após resolver isso ocorreu o erro do jest não encontrar o modulo do module-alias.
 
-    annot find module '@src/clients/stormGlass' from 'src/clients/__test__/stormGlass.test.ts'
+    cannot find module '@src/clients/stormGlass' from 'src/clients/__test__/stormGlass.test.ts'
 
 Teste usar a importação normal e funcionou: 
 
     import { StormGlass } from '../stormGlass';
 
-Porem não é esse o resultado desejado, entaõ...
+Porem não é esse o resultado desejado, então alterei o "moduleNameMapper" do
+jest.config.js root:
+
+    moduleNameMapper: {
+    '@src/(.*)': '<rootDir>/src/$1',
+    '@test/(.*)': '<rootDir>/test/$1',
+  },
+
+Essa era a forma de representar normal, ensinada durante o curso. A anterior erá uma que ví nos comentário informando que de 2022 para frente o código tinha que mudar por que ao instalar o axios ele quebrava o jest.
+
+- Usei essa configuração enquanto tentava corrigir os erros do '"buffer"'.
