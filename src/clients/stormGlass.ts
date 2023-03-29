@@ -45,7 +45,12 @@ export class StormGlass {
       source=${this.stormGlassAPISource}&
       end=1592113802&
       lat=${lat}&
-      lng=${lng}`
+      lng=${lng}`,
+      {
+        headers: {
+          Authorization: 'fake-token',
+        },
+      }
     );
 
     return this.normalizeResponse(response.data);
@@ -79,12 +84,3 @@ export class StormGlass {
     );
   }
 }
-
-/*
-
-Promise.resolve({});
-No caso de Promise.resolve({}), a Promise é criada imediatamente e 
-retorna um valor resolvido {} de forma síncrona. 
-Isso pode ser útil em situações em que uma Promise precisa ser retornada, 
-mas o valor já está disponível de forma síncrona.
-*/
