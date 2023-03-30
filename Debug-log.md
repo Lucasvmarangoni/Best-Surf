@@ -7,9 +7,9 @@ Por isso decidi acrescentar a este projeto o arquivo de Debug-log e compartilha-
 
 # Log
 
-## '__dirname' is not defined.eslintno-undef
+## '\_\_dirname' is not defined.eslintno-undef
 
-eslint não reconhece a variável __dirname. A solução foi adicionar a variável __dirname como uma variável global no seu arquivo de configuração do eslint.
+eslint não reconhece a variável **dirname. A solução foi adicionar a variável **dirname como uma variável global no seu arquivo de configuração do eslint.
 
      "globals": {
     "__dirname": true
@@ -24,7 +24,6 @@ Tive que alterar a versão do @types do node para a 14.
     "@types/node": "14.0.0",
 
 Apaguei a pasta node_modules e instalei novamente.
-
 
 ## Module '"buffer"' has no exported member 'Blob'. nodejs
 
@@ -55,7 +54,7 @@ Acrescentei no package.json:
 
     "type": "module",
 
-Porem não consegui usar a mesma configuração no jest.config.js da pasta test no da parta root, pois não encontrava o tsconfig.json. 
+Porem não consegui usar a mesma configuração no jest.config.js da pasta test no da parta root, pois não encontrava o tsconfig.json.
 
     https://codingbeautydev.com/blog/javascript-dirname-is-not-defined-in-es-module-scope/
 
@@ -63,7 +62,7 @@ Após resolver isso ocorreu o erro do jest não encontrar o modulo do module-ali
 
     cannot find module '@src/clients/stormGlass' from 'src/clients/__test__/stormGlass.test.ts'
 
-Teste usar a importação normal e funcionou: 
+Teste usar a importação normal e funcionou:
 
     import { StormGlass } from '../stormGlass';
 
@@ -73,8 +72,27 @@ jest.config.js root:
     moduleNameMapper: {
     '@src/(.*)': '<rootDir>/src/$1',
     '@test/(.*)': '<rootDir>/test/$1',
-  },
+
+},
 
 Essa era a forma de representar normal, ensinada durante o curso. A anterior erá uma que ví nos comentário informando que de 2022 para frente o código tinha que mudar por que ao instalar o axios ele quebrava o jest.
 
 - Usei essa configuração enquanto tentava corrigir os erros do '"buffer"'.
+
+## 'err' é do tipo 'desconhecido'.ts(18046)
+
+Durante as aulas do curso não foi necessário criar uma condicional, mas para mim apareceu essa mensagem de erro e o simples uso do any causava problema com o eslint, além de não ser uma boa prática uma vez que não é seguro porque não há garantia de que o que é lançado será herdado do Error.
+
+Portanto usei a condicional com o instanceof:
+
+    catch (err) {
+        if (err instanceof Error) {
+            throw new ClientRequestError(err.message);
+        } else {
+            throw new Error('Unexpected error when trying to communicate to StormGlass: Network Error');
+        }
+        }
+
+- Solução: https://stackoverflow.com/questions/68240884/error-object-inside-catch-is-of-type-unknown
+
+Ainda vou pensar se esta solução é adequada, pois me parece não ser, então buscarei outra.
