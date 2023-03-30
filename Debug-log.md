@@ -111,3 +111,17 @@ Por isso decidi fazer assim:
 
     throw new ClientRequestError((err as Error).message);
 
+### O mesmo erro no tratamento do erro da response
+
+- StormGlassResponseError
+
+Solucionei assim:
+
+     const error = err as AxiosError;
+      if (error.response && error.response.status) {
+        throw new ClientResponseError(
+          `Error: ${JSON.stringify(error.response.data)} Code: ${
+            error.response.status
+          }`
+        );
+      }
