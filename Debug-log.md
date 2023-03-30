@@ -89,10 +89,25 @@ Portanto usei a condicional com o instanceof:
         if (err instanceof Error) {
             throw new ClientRequestError(err.message);
         } else {
-            throw new Error('Unexpected error when trying to communicate to StormGlass: Network Error');
+            throw new Error(String(err));
         }
         }
 
-- Solução: https://stackoverflow.com/questions/68240884/error-object-inside-catch-is-of-type-unknown
+- https://stackoverflow.com/questions/68240884/error-object-inside-catch-is-of-type-unknown
 
-Ainda vou pensar se esta solução é adequada, pois me parece não ser, então buscarei outra.
+- https://ruttmann.github.io/posts/ts-error-messages/
+
+Nem uma dessas opções atendeu o projeto, então nos comentários tinha uma solução e o aviso do Waldemar dizendo que estava atualizado no repositório do curso. 
+
+     catch (err) {           
+      throw new ClientRequestError((err as { message: any }).message);
+    }
+
+Eu já havia pensando em usar o "as" antes, mas como nesse mesmo curso foi mencionado que não se usa "as" fora de testes, eu descartei a ideia. 
+
+Contudo essa solução ainda faz uso do any, então mesmo sendo a solução do curso, não sei se é adequado.
+
+Por isso decidi fazer assim: 
+
+    throw new ClientRequestError((err as Error).message);
+

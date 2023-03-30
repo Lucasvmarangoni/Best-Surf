@@ -1,5 +1,5 @@
 import { InternalError } from '@src/util/errors/internal-error';
-import { AxiosStatic } from 'axios';
+import { AxiosError, AxiosStatic } from 'axios';
 
 export interface StormGlassPointSource {
   [key: string]: number;
@@ -63,11 +63,7 @@ export class StormGlass {
       );
       return this.normalizeResponse(response.data);
     } catch (err) {
-      if (err instanceof Error) {
-        throw new ClientRequestError(err.message);
-      } else {
-        throw new Error('Unexpected error when trying to communicate to StormGlass: Network Error');
-      }
+      throw new ClientRequestError((err as Error).message);
     }
   }
 
