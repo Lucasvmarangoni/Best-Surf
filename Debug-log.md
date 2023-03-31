@@ -119,7 +119,7 @@ Solucionei assim:
 
      const error = err as AxiosError;
       if (error.response && error.response.status) {
-        throw new ClientResponseError(
+        throw new StormGlassResponseError(
           `Error: ${JSON.stringify(error.response.data)} Code: ${
             error.response.status
           }`
