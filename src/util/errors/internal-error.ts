@@ -9,4 +9,3 @@ export class InternalError extends Error {
     Error.captureStackTrace(this, this.constructor);
   }
 }
-
