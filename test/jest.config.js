@@ -2,6 +2,7 @@ import { pathsToModuleNameMapper } from 'ts-jest';
 import { compilerOptions } from '../tsconfig.json';
 
 const config = {
+  verbose: true,
   moduleFileExtensions: ['js', 'json', 'ts'],
   testRegex: '.*\\.test\\.ts$',
   transform: {

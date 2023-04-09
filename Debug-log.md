@@ -125,3 +125,33 @@ Solucionei assim:
           }`
         );
       }
+
+
+## Erro com test:functional
+
+    yarn test:functional
+    yarn run v1.22.19
+    warning ../../../package.json: No license field
+    $ jest --projects ./test/functional --runInBand
+    TypeError [ERR_IMPORT_ASSERTION_TYPE_MISSING]: Module "file:///home/ldragk/Documentos/Programa%C3%A7%C3%A3o/Best-Surfing/tsconfig.json" needs an import assertion of type "json"
+        at new NodeError (node:internal/errors:393:5)
+        at validateAssertions (node:internal/modules/esm/assert:82:15)
+        at defaultLoad (node:internal/modules/esm/load:84:3)
+        at nextLoad (node:internal/modules/esm/loader:163:28)
+        at ESMLoader.load (node:internal/modules/esm/loader:605:26)
+        at ESMLoader.moduleProvider (node:internal/modules/esm/loader:457:22)
+        at new ModuleJob (node:internal/modules/esm/module_job:63:26)
+        at #createModuleJob (node:internal/modules/esm/loader:480:17)
+        at ESMLoader.getModuleJob (node:internal/modules/esm/loader:434:34)
+        at async ModuleWrap.<anonymous> (node:internal/modules/esm/module_job:78:21)
+    error Command failed with exit code 1.
+
+Resolvi assim: 
+
+Usei a biblioteca "dotenv" para carregar as variáveis de ambiente necessárias para o teste. 
+
+        "test:functional": "dotenv -e .env -- jest --projects ./test --runInBand",
+
+Antes: 
+
+        "test:functional": "jest --projects ./test/functional --runInBand",
