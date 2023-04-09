@@ -1,3 +1,4 @@
+
 describe('Beaches functional tests', () => {
   describe('When creating a beach', () => {
     it('sould create a beach with sucess', async () => {

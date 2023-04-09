@@ -1,10 +1,19 @@
-import { pathsToModuleNameMapper } from 'ts-jest';
-import { compilerOptions } from '../tsconfig.json';
 
-const config = {
-  verbose: true,
-  moduleFileExtensions: ['js', 'json', 'ts'],
-  testRegex: '.*\\.test\\.ts$',
+import { resolve } from 'path';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const root = resolve(__dirname);
+
+export const module = {
+  rootDir: root,
+  displayName: 'end2end',
+  setupFilesAfterEnv: ["<rootDir>/jest-setup.ts"],
+  testMatch: ["<rootDir>/*/*.test.ts"],
+  testEnvironment: 'node',
+  clearMocks: true,
   transform: {
     '^.+\\.(ts|tsx)$': [
       'ts-jest',
@@ -12,19 +21,7 @@ const config = {
         tsconfig: 'tsconfig.json',
       },
     ],
-  },
-  displayName: 'root-tests',
-  testMatch: ['<rootDir>/src/**/.test.ts'],
-  testEnvironment: 'node',
-  clearMocks: true,
-  preset: 'ts-jest',
-  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
-    prefix: '<rootDir>/',
-  }),
-  transformIgnorePatterns: ['node_modules/(?!axios)'],
-
-  collectCoverageFrom: ['**/*.(t|j)s'],
-  coverageDirectory: '../coverage',
+  }
 };
 
-export default config;
+export default module;

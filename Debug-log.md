@@ -129,6 +129,8 @@ Solucionei assim:
 
 ## Erro com test:functional
 
+- /test/jest.config.js
+
     yarn test:functional
     yarn run v1.22.19
     warning ../../../package.json: No license field
@@ -146,12 +148,86 @@ Solucionei assim:
         at async ModuleWrap.<anonymous> (node:internal/modules/esm/module_job:78:21)
     error Command failed with exit code 1.
 
-Resolvi assim: 
-
-Usei a biblioteca "dotenv" para carregar as variáveis de ambiente necessárias para o teste. 
-
-        "test:functional": "dotenv -e .env -- jest --projects ./test --runInBand",
-
 Antes: 
 
-        "test:functional": "jest --projects ./test/functional --runInBand",
+    import { pathsToModuleNameMapper } from 'ts-jest';
+    import { compilerOptions } from '../tsconfig.json';
+
+    const config = {
+    verbose: true,
+    moduleFileExtensions: ['js', 'json', 'ts'],
+    testRegex: '.*\\.test\\.ts$',
+    transform: {
+        '^.+\\.(ts|tsx)$': [
+        'ts-jest',
+        {
+            tsconfig: 'tsconfig.json',
+        },
+        ],
+    },
+    displayName: 'root-tests',
+    testMatch: ['<rootDir>/src/**/.test.ts'],
+    testEnvironment: 'node',
+    clearMocks: true,
+    preset: 'ts-jest',
+    moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
+        prefix: '<rootDir>/',
+    }),
+    transformIgnorePatterns: ['node_modules/(?!axios)'],
+
+    collectCoverageFrom: ['**/*.(t|j)s'],
+    coverageDirectory: '../coverage',
+    };
+
+    export default config;
+
+
+Resolvi assim: 
+
+Alterei o diretório que foi usado no curso pois estava entrando em uma pasta que não existe "test/test" e assim limitando as pastas que pudessem existir arquivos ".test".
+
+    "<rootDir>/**/*.test.ts" 
+
+para 
+
+    "<rootDir>/*/*.test.ts"
+
+
+E mudei também a forma de localizar o diretório raiz: 
+
+    import { resolve } from 'path';
+    import path from 'path';
+    import { fileURLToPath } from 'url';
+
+A configuração completa ficou assim:
+
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    const root = resolve(__dirname);
+
+    import { resolve } from 'path';
+    import path from 'path';
+    import { fileURLToPath } from 'url';
+
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    const root = resolve(__dirname);
+
+    export const module = {
+    rootDir: root,
+    displayName: 'end2end',
+    setupFilesAfterEnv: ["<rootDir>/jest-setup.ts"],
+    testMatch: ["<rootDir>/*/*.test.ts"],
+    testEnvironment: 'node',
+    clearMocks: true,
+    transform: {
+        '^.+\\.(ts|tsx)$': [
+        'ts-jest',
+        {
+            tsconfig: 'tsconfig.json',
+        },
+        ],
+    }
+    };
+
+    export default module;
