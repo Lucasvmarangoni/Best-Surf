@@ -44,7 +44,7 @@ Porem o Jest continuou causando erro no momento de rodar os testes.
     ^^^^^^
     SyntaxError: Cannot use import statement outside a module
 
-E após eu alterar o jest da pasta root para igual ao da pasta test.
+E após eu alterei o jest da pasta root para igual ao da pasta test.
 
     import { pathsToModuleNameMapper } from 'ts-jest';
     ^^^^^^
@@ -54,15 +54,11 @@ Acrescentei no package.json:
 
     "type": "module",
 
-Porem não consegui usar a mesma configuração no jest.config.js da pasta test no da parta root, pois não encontrava o tsconfig.json.
-
-    https://codingbeautydev.com/blog/javascript-dirname-is-not-defined-in-es-module-scope/
-
 Após resolver isso ocorreu o erro do jest não encontrar o modulo do module-alias.
 
     cannot find module '@src/clients/stormGlass' from 'src/clients/__test__/stormGlass.test.ts'
 
-Teste usar a importação normal e funcionou:
+Testei usar a importação normal e funcionou:
 
     import { StormGlass } from '../stormGlass';
 
@@ -131,22 +127,23 @@ Solucionei assim:
 
 - /test/jest.config.js
 
-    yarn test:functional
-    yarn run v1.22.19
-    warning ../../../package.json: No license field
-    $ jest --projects ./test/functional --runInBand
-    TypeError [ERR_IMPORT_ASSERTION_TYPE_MISSING]: Module "file:///home/ldragk/Documentos/Programa%C3%A7%C3%A3o/Best-Surfing/tsconfig.json" needs an import assertion of type "json"
-        at new NodeError (node:internal/errors:393:5)
-        at validateAssertions (node:internal/modules/esm/assert:82:15)
-        at defaultLoad (node:internal/modules/esm/load:84:3)
-        at nextLoad (node:internal/modules/esm/loader:163:28)
-        at ESMLoader.load (node:internal/modules/esm/loader:605:26)
-        at ESMLoader.moduleProvider (node:internal/modules/esm/loader:457:22)
-        at new ModuleJob (node:internal/modules/esm/module_job:63:26)
-        at #createModuleJob (node:internal/modules/esm/loader:480:17)
-        at ESMLoader.getModuleJob (node:internal/modules/esm/loader:434:34)
-        at async ModuleWrap.<anonymous> (node:internal/modules/esm/module_job:78:21)
-    error Command failed with exit code 1.
+        yarn test:functional
+            yarn run v1.22.19
+            warning ../../../package.json: No license field
+            $ jest --projects ./test/functional --runInBand
+            TypeError [ERR_IMPORT_ASSERTION_TYPE_MISSING]: Module "file:///home/ldragk/Documentos/Programa%C3%A7%C3%A3o/Best-Surfing/tsconfig.json" needs an import assertion of type "json"
+                at new NodeError (node:internal/errors:393:5)
+                at validateAssertions (node:internal/modules/esm/assert:82:15)
+                at defaultLoad (node:internal/modules/esm/load:84:3)
+                at nextLoad (node:internal/modules/esm/loader:163:28)
+                at ESMLoader.load (node:internal/modules/esm/loader:605:26)
+                at ESMLoader.moduleProvider (node:internal/modules/esm/loader:457:22)
+                at new ModuleJob (node:internal/modules/esm/module_job:63:26)
+                at #createModuleJob (node:internal/modules/esm/loader:480:17)
+                at ESMLoader.getModuleJob (node:internal/modules/esm/loader:434:34)
+                at async ModuleWrap.<anonymous> (node:internal/modules/esm/module_job:78:21)
+            error Command failed with exit code 1.
+    
 
 Antes: 
 

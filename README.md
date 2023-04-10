@@ -42,8 +42,5 @@ Nesse projeto, vou criar e rodar micro-serviços na cloud utilizando Node.js com
 
 <br>
 
-## <a href="https://github.com/Lucasvmarangoni/Best-Surfing/blob/master/Debug-log.md" >Debug Log</a>
-
-<br><br>
 
 - Inicio em 24/03/2023
