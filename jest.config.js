@@ -12,19 +12,11 @@ export const module = {
   testMatch: ['<rootDir>/src/**/*.test.ts'],
   testEnvironment: 'node',
   clearMocks: true,
-  transform: {
-    '^.+\\.(ts|tsx)$': [
-      'ts-jest',
-      {
-        tsconfig: 'tsconfig.json',
-      },
-    ],
-  },
+  preset: 'ts-jest',
   moduleNameMapper: {
     '@src/(.*)': '<rootDir>/src/$1',
     '@test/(.*)': '<rootDir>/test/$1',
   },
-  transformIgnorePatterns: ['node_modules/(?!axios)'],
 };
 
 export default module;
