@@ -10,7 +10,7 @@
 
 <div align="justify">
 
-Projeto oferecido pelo canal do YouTube <a href="https://www.youtube.com/@WaldemarNetoDevLab">Waldemar Neto - Dev Lab</a>.
+Projeto curso <a href="https://www.nodejs-typescript-api.com/curso-gratis/">"DO ZERO A PRODUÇÃO"</a> disponibilizado pelo Engenheiro de software Waldemar Neto.
 
 O projeto é uma aplicação que monitora o clima nas praias e permite ao usuário cadastrar suas praias de interesse e monitorá-las, além de receber informações úteis para aproveitar ao máximo seu esporte.
 
@@ -43,6 +43,5 @@ Nesse projeto, vou criar e rodar micro-serviços na cloud utilizando Node.js com
 </div>
 
 <br>
-
 
 - Inicio em 24/03/2023
