@@ -93,17 +93,17 @@ Portanto usei a condicional com o instanceof:
 
 - https://ruttmann.github.io/posts/ts-error-messages/
 
-Nem uma dessas opções atendeu o projeto, então nos comentários tinha uma solução e o aviso do Waldemar dizendo que estava atualizado no repositório do curso. 
+Nem uma dessas opções atendeu o projeto, então nos comentários tinha uma solução e o aviso do Waldemar dizendo que estava atualizado no repositório do curso.
 
-     catch (err) {           
+     catch (err) {
       throw new ClientRequestError((err as { message: any }).message);
     }
 
-Eu já havia pensando em usar o "as" antes, mas como nesse mesmo curso foi mencionado que não se usa "as" fora de testes, eu descartei a ideia. 
+Eu já havia pensando em usar o "as" antes, mas como nesse mesmo curso foi mencionado que não se usa "as" fora de testes, eu descartei a ideia.
 
 Contudo essa solução ainda faz uso do any, então mesmo sendo a solução do curso, não sei se é adequado.
 
-Por isso decidi fazer assim: 
+Por isso decidi fazer assim:
 
     throw new ClientRequestError((err as Error).message);
 
@@ -121,7 +121,6 @@ Solucionei assim:
           }`
         );
       }
-
 
 ## Erro com test:functional
 
@@ -143,9 +142,8 @@ Solucionei assim:
                 at ESMLoader.getModuleJob (node:internal/modules/esm/loader:434:34)
                 at async ModuleWrap.<anonymous> (node:internal/modules/esm/module_job:78:21)
             error Command failed with exit code 1.
-    
 
-Antes: 
+Antes:
 
     import { pathsToModuleNameMapper } from 'ts-jest';
     import { compilerOptions } from '../tsconfig.json';
@@ -178,19 +176,17 @@ Antes:
 
     export default config;
 
-
-Resolvi assim: 
+Resolvi assim:
 
 Alterei o diretório que foi usado no curso pois estava entrando em uma pasta que não existe "test/test" e assim limitando as pastas que pudessem existir arquivos ".test".
 
-    "<rootDir>/**/*.test.ts" 
+    "<rootDir>/**/*.test.ts"
 
-para 
+para
 
     "<rootDir>/*/*.test.ts"
 
-
-E mudei também a forma de localizar o diretório raiz: 
+E mudei também a forma de localizar o diretório raiz:
 
     import { resolve } from 'path';
     import path from 'path';
@@ -228,3 +224,41 @@ A configuração completa ficou assim:
     };
 
     export default module;
+
+Também não funcionou, não estava localizando os modulos especificados no "alias".
+
+Percebi que essa configuração estava incorreta, acabei configurando assim quando não estava entendendo bem sobre o que era essa pasta de teste.
+
+Então percebi que a forma correta era importar as configuração do jest.condig.js do root, e tive que converter de "require", CommonJS, para "import", módulos ES6, assim:
+
+    const rootConfig = await import(rootConfigPath).then((module) => module.default);
+
+E a constante config assim:
+
+    export const config = {
+    ...rootConfig, ...{
+        rootDir: root,
+        displayName: "end2end-tests",
+        setupFilesAfterEnv: ["<rootDir>/test/jest-setup.ts"],
+        testMatch: ["<rootDir>/test/**/*.test.ts"],
+    },
+    };
+
+Então percebi que a constante "root" do teste end2end estava assim:
+
+    /home/ldragk/Documentos/Programação/Best-Surfing/test
+
+Não estava encontrando os testes.
+
+Então percebi que o "resolve" deveria ser assim, para voltar ao diretório anterior (root):
+
+    const root = resolve(__dirname, '..');
+
+Resolveu o problema dos modulos do "alias e de não encontrar os testes, mas surgiu um novo erro:
+
+     Configuration property "mongoUrl" is not defined
+
+Resolvido, o problema pe que passei o nome errado. No arquivo config/default.json estava MonggoURL. Então corrigi e retornou o erro esperado:
+
+    Expected: 201
+    Received: 404

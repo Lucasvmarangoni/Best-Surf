@@ -2,8 +2,8 @@
   "name": "best-surf",
   "type": "module",
   "version": "1.0.0",
-  "description": "<div align=\"center\">",
-  "main": "index.js",
+  "description": "",
+  "main": "index.js",  
   "scripts": {
     "build": "tsc",
     "start": "yarn build && node dist/src/index.js",
