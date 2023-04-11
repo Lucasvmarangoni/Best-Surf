@@ -254,11 +254,7 @@ Então percebi que o "resolve" deveria ser assim, para voltar ao diretório ante
 
     const root = resolve(__dirname, '..');
 
-Resolveu o problema dos modulos do "alias e de não encontrar os testes, mas surgiu um novo erro:
-
-     Configuration property "mongoUrl" is not defined
-
-Resolvido, o problema pe que passei o nome errado. No arquivo config/default.json estava MonggoURL. Então corrigi e retornou o erro esperado:
+Resolveu o problema dos modulos do "alias e de não encontrar os testes Então retornou o erro esperado:
 
     Expected: 201
     Received: 404
