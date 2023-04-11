@@ -1,5 +1,6 @@
 # Keep environment variables out of version control
 NOTES.MD
+Debug-log.md
 
 # Logs
 logs
@@ -70,4 +71,3 @@ dist/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
-Debug-log.md
