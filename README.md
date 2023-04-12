@@ -29,13 +29,13 @@ Nesse projeto, vou criar e rodar micro-serviços na cloud utilizando Node.js com
 - TypeScript
 - Node js
 - Express
-  - OvernightJS
+- OvernightJS
 - MongoDB
 - Mongoose
 - Jest
 - Supertest
 - Docker
-  - Docker Compose
+- Docker Compose
 - Github Actions
 
 </div>
