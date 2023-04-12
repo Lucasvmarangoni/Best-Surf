@@ -10,7 +10,7 @@
 
 <div align="justify">
 
-Projeto curso <a href="https://www.nodejs-typescript-api.com/curso-gratis/">"DO ZERO A PRODUÇÃO"</a> disponibilizado pelo Engenheiro de software Waldemar Neto.
+Projeto curso <a href="https://www.nodejs-typescript-api.com/curso-gratis/" target="_blank">"DO ZERO A PRODUÇÃO"</a> disponibilizado pelo Engenheiro de software Waldemar Neto.
 
 O projeto é uma aplicação que monitora o clima nas praias e permite ao usuário cadastrar suas praias de interesse e monitorá-las, além de receber informações úteis para aproveitar ao máximo seu esporte.
 
