@@ -7,14 +7,14 @@ export interface StormGlassPointSource {
 }
 
 export interface StormGlassPoint {
-  readonly time: string;
+  time: string;
   readonly waveHeight: StormGlassPointSource;
   readonly waveDirection: StormGlassPointSource;
-  readonly swellHeight: StormGlassPointSource;
   readonly swellDirection: StormGlassPointSource;
+  readonly swellHeight: StormGlassPointSource;
   readonly swellPeriod: StormGlassPointSource;
-  readonly windSpeed: StormGlassPointSource;
   readonly windDirection: StormGlassPointSource;
+  readonly windSpeed: StormGlassPointSource;
 }
 
 export interface StormGlassForecastResponse {
@@ -25,11 +25,17 @@ export interface ForecastPoint {
   time: string;
   waveHeight: number;
   waveDirection: number;
-  swellHeight: number;
   swellDirection: number;
+  swellHeight: number;
   swellPeriod: number;
-  windSpeed: number;
   windDirection: number;
+  windSpeed: number;
+}
+
+export class StormGlassUnexpectedResponseError extends InternalError {
+  constructor(message: string) {
+    super(message);
+  }
 }
 
 export class ClientRequestError extends InternalError {
@@ -48,13 +54,13 @@ export class StormGlassResponseError extends InternalError {
   }
 }
 
-const stormGlassResourceConfig: IConfig = config.get(
+const stormglassResourceConfig: IConfig = config.get(
   'App.resources.StormGlass'
 );
 
 export class StormGlass {
-  readonly stormGlassAPIParams = `swellDirection%2CswellHeight%2CswellPeriod%2CwaveDirection%2
-  CwaveHeight%2CwindDirection%2CwindSpeed`;
+  readonly stormGlassAPIParams =
+    'swellDirection,swellHeight,swellPeriod,waveDirection,waveHeight,windDirection,windSpeed';
   readonly stormGlassAPISource = 'noaa';
 
   constructor(protected request = new HTTPUtil.Request()) {}
@@ -62,34 +68,29 @@ export class StormGlass {
   public async fetchPoints(lat: number, lng: number): Promise<ForecastPoint[]> {
     try {
       const response = await this.request.get<StormGlassForecastResponse>(
-        `${stormGlassResourceConfig.get('apiUrl')}/weather/point?
-      params=${this.stormGlassAPIParams}&
-      source=${this.stormGlassAPISource}&
-      end=1592113802&
-      lat=${lat}&
-      lng=${lng}`,
+        `${stormglassResourceConfig.get(
+          'apiUrl'
+        )}/weather/point?lat=${lat}&lng=${lng}&params=${
+          this.stormGlassAPIParams
+        }&source=${this.stormGlassAPISource}`,
         {
           headers: {
-            Authorization: stormGlassResourceConfig.get('apiToken'),
+            Authorization: stormglassResourceConfig.get('apiToken'),
           },
         }
       );
       return this.normalizeResponse(response.data);
     } catch (err) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const error = err as any;
-      if (HTTPUtil.Request.isRequestError(error)) {
+      if (err instanceof Error && HTTPUtil.Request.isRequestError(err)) {
+        const error = HTTPUtil.Request.extractErrorData(err);
         throw new StormGlassResponseError(
-          `Error: ${JSON.stringify(error.response.data)} Code: ${
-            error.response.status
-          }`
+          `Error: ${JSON.stringify(error.data)} Code: ${error.status}`
         );
       }
-      throw new ClientRequestError((err as Error).message);
+      throw new ClientRequestError(JSON.stringify(err));
     }
   }
-
-  public normalizeResponse(
+  private normalizeResponse(
     points: StormGlassForecastResponse
   ): ForecastPoint[] {
     return points.hours.filter(this.isValidPoint.bind(this)).map((point) => ({

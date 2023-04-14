@@ -1,19 +1,7 @@
 import { ForecastPoint, StormGlass } from '@src/clients/stormGlass';
+import { Beach } from '@src/models/beach';
 
-export enum BeachPosition {
-  N = 'N',
-  S = 'S',
-  E = 'E',
-  W = 'W',
-}
 
-export interface Beach {
-  lat: number;
-  lng: number;
-  name: string;
-  position: BeachPosition;
-  user: string;
-}
 
 export interface BeachForecast extends Omit<Beach, 'user'>, ForecastPoint {}
 
@@ -38,7 +26,7 @@ export class Forecast {
           lng: beach.lng,
           name: beach.name,
           position: beach.position,
-          rating: 1,
+          rating: 2,
         },
         ...e,
       }));
