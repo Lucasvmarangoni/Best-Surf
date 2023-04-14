@@ -1,8 +1,6 @@
 import { ForecastPoint, StormGlass } from '@src/clients/stormGlass';
 import { Beach } from '@src/models/beach';
 
-
-
 export interface BeachForecast extends Omit<Beach, 'user'>, ForecastPoint {}
 
 export interface TimeForecast {
