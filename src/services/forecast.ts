@@ -1,11 +1,19 @@
 import { ForecastPoint, StormGlass } from '@src/clients/stormGlass';
 import { Beach } from '@src/models/beach';
+import { InternalError } from '@src/util/errors/internal-error';
 
 export interface BeachForecast extends Omit<Beach, 'user'>, ForecastPoint {}
 
 export interface TimeForecast {
   time: string;
   forecast: BeachForecast[];
+}
+
+
+export class ForecastProcessingInternalError extends InternalError {
+  constructor(message: string) {
+    super(`Unexpected error during the forecast processing: ${message}`);
+  }
 }
 
 export class Forecast {
