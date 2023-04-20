@@ -6,14 +6,14 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/src/index.js",
-    "start:dev": "ts-node-dev 'src/index.ts'",
+    "start:local": "dotenv -e .env -- ts-node-dev --transpile-only src/index.ts | pino-pretty -c",
+    "test": "yarn lint && yarn style:check && yarn test:unit && yarn test:functional",
     "lint": "eslint ./src ./test --ext .ts",
     "lint:fix": "eslint ./src ./test --ext .ts --fix",
-    "test": "yarn test:unit && yarn test:functional",
-    "test:functional": "jest --projects ./test --runInBand",
-    "test:unit": "jest",
-    "style:check": "prettier --check 'src/**/*.ts' 'test/**/*.ts'",
-    "style:fix": "prettier --write 'src/**/*.ts' 'test/**/*.ts'"
+    "test:functional": "dotenv -e .env -- jest --projects ./test --runInBand",
+    "test:unit": "dotenv -e .env -- jest",
+    "style:check": "prettier --check src/**/*.ts test/**/*.ts",
+    "style:fix": "prettier --write src/**/*.ts test/**/*.ts"
   },
   "engines": {
     "node": ">16"
