@@ -16,7 +16,7 @@
     "style:fix": "prettier --write src/**/*.ts test/**/*.ts"
   },
   "engines": {
-    "node": "16"
+    "node": "16.20.0"
   },
   "repository": {
     "type": "git",
