@@ -1,6 +1,6 @@
-import { ForecastPoint, StormGlass } from '@src/clients/stormGlass';
-import { Beach } from '@src/models/beach';
+import { StormGlass, ForecastPoint } from '@src/clients/stormGlass';
 import { InternalError } from '@src/util/errors/internal-error';
+import { Beach } from '@src/models/beach';
 
 export interface BeachForecast extends Omit<Beach, 'user'>, ForecastPoint {}
 
@@ -22,22 +22,16 @@ export class Forecast {
     beaches: Beach[]
   ): Promise<TimeForecast[]> {
     const pointsWithCorrectSources: BeachForecast[] = [];
-    for (const beach of beaches) {
-      const points = await this.stormGlass.fetchPoints(beach.lat, beach.lng);
-      const enrichedBeachData = points.map((e) => ({
-        ...{},
-        ...{
-          lat: beach.lat,
-          lng: beach.lng,
-          name: beach.name,
-          position: beach.position,
-          rating: 2,
-        },
-        ...e,
-      }));
-      pointsWithCorrectSources.push(...enrichedBeachData);
+    try {
+      for (const beach of beaches) {
+        const points = await this.stormGlass.fetchPoints(beach.lat, beach.lng);
+        const enrichedBeachData = this.enrichBeachData(points, beach);
+        pointsWithCorrectSources.push(...enrichedBeachData);
+      }
+      return this.mapForecastByTime(pointsWithCorrectSources);
+    } catch (error) {
+      throw new ForecastProcessingInternalError((error as Error).message);
     }
-    return this.mapForecastByTime(pointsWithCorrectSources);
   }
 
   private mapForecastByTime(forecast: BeachForecast[]): TimeForecast[] {
@@ -54,5 +48,22 @@ export class Forecast {
       }
     }
     return forecastByTime;
+  }
+
+  private enrichBeachData(
+    points: ForecastPoint[],
+    beach: Beach
+  ): BeachForecast[] {
+    return points.map((e) => ({
+      ...{},
+      ...{
+        lat: beach.lat,
+        lng: beach.lng,
+        name: beach.name,
+        position: beach.position,
+        rating: 1,
+      },
+      ...e,
+    }));
   }
 }
