@@ -37,7 +37,6 @@ Nesse projeto, vou criar e rodar micro-serviços na cloud utilizando Node.js com
 - Docker
 - Docker Compose
 - Github Actions
-- Heroku
 
 </div>
 
