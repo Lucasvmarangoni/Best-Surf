@@ -22,7 +22,12 @@
     "type": "git",
     "url": "git+https://github.com/Lucasvmarangoni/Best-Surf.git"
   },
-  "keywords": [],
+  "keywords": [
+    "node",
+    "nodejs",
+    "typescript",
+    "api"
+  ],
   "author": "Lucas Vazzoller Marangoni",
   "license": "ISC",
   "bugs": {
