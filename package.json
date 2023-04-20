@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/Lucasvmarangoni/Best-Surf#readme",
   "engines": {
-    "node": "16"
+    "node": ">=16.0.0"
   },
   "dependencies": {
     "@overnightjs/core": "^1.7.6",
