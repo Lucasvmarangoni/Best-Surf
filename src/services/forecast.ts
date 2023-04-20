@@ -9,7 +9,6 @@ export interface TimeForecast {
   forecast: BeachForecast[];
 }
 
-
 export class ForecastProcessingInternalError extends InternalError {
   constructor(message: string) {
     super(`Unexpected error during the forecast processing: ${message}`);
