@@ -14,9 +14,11 @@ Projeto curso <a href="https://www.nodejs-typescript-api.com/curso-gratis/" targ
 
 O projeto é uma aplicação que monitora o clima nas praias e permite ao usuário cadastrar suas praias de interesse e monitorá-las, além de receber informações úteis para aproveitar ao máximo seu esporte.
 
-Nesse projeto, vou criar e rodar micro-serviços na cloud utilizando Node.js com Typescript, seguindo as melhores práticas de desenvolvimento em um curso que vai do desenvolvimento à produção.
+Nesse projeto, vou construir e rodar micro-serviços na cloud utilizando Node.js com Typescript, seguindo as melhores práticas de desenvolvimento em um curso que vai do desenvolvimento à produção.
 
-- Durante o curso, é criada uma API para calcular a melhor condição de surf entre várias praias. Essa API tem como objetivo servir a aplicação web. A aplicação web não é construída durante o curso, pois ela não é o foco do conteúdo. Ela é disponibilizada pronta, portanto o front-end não é construído por mim.
+Durante o curso, é criada uma API para calcular a melhor condição de surf entre várias praias. Essa API tem como objetivo servir a aplicação web. 
+
+- A aplicação web não é construída durante o curso, pois ela não é o foco do conteúdo. Ela é disponibilizada pronta. Optei por não adicionar o código front-end ao meu repositório, uma vez que pode ser consultado no repositório original do projeto do curso.
 
 </div>
 
@@ -44,4 +46,4 @@ Nesse projeto, vou criar e rodar micro-serviços na cloud utilizando Node.js com
 
 <br>
 
-- Inicio em 24/03/2023
+- Inicio em 24/03
