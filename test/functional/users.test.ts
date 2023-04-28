@@ -134,8 +134,6 @@ describe('Users functional tests', () => {
         .set({ 'x-access-token': token });
 
       expect(status).toBe(200);
-      console.log(body);
-
       expect(body).toMatchObject(JSON.parse(JSON.stringify({ user })));
     });
 
