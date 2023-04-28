@@ -29,12 +29,20 @@ Durante o curso, é criada uma API para calcular a melhor condição de surf ent
 ## Tecnologias
 
 - TypeScript
-- Node js
+- Node.js
 - Express
 - OvernightJS
+- Lodash
+- Pino
+- Express-pino
+- Json Web Token
+- Bcrypt
+- BodyParser
+- Node-Config
 - MongoDB
 - Mongoose
 - Jest
+- Nock
 - Supertest
 - Docker
 - Docker Compose
