@@ -2,7 +2,7 @@
 
 <div align="center">
 
-# Best Surfing
+# Best Surf
 
 ## Projeto Back-end
 
