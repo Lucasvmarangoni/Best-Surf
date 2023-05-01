@@ -17,7 +17,7 @@ export class BeachesController extends BaseController {
       this.sendCreateUpdateErrorResponse(res, err as Error);
 
       // if (err instanceof mongoose.Error.ValidationError) {
-      //   res.status(422).send({ error: (err as Error).message });
+      //   res.status(400).send({ error: (err as Error).message });
       // } else {
       //   logger.error(err),
       //     res.status(500).send({ error: 'Internal Server Error' });

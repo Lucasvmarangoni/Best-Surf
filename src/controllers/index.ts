@@ -43,7 +43,7 @@ export abstract class BaseController {
       };
     }
     return {
-      code: 422,
+      code: 400,
       error: (err as Error).message,
     };
   }
