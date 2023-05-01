@@ -18,7 +18,7 @@ Nesse projeto, vou construir e rodar micro-serviços na cloud utilizando Node.js
 
 Durante o curso, é criada uma API para calcular a melhor condição de surf entre várias praias. Essa API tem como objetivo servir a aplicação web. 
 
-- A aplicação web não é construída durante o curso, pois ela não é o foco do conteúdo. Ela é disponibilizada pronta. Optei por não adicionar o código front-end ao meu repositório, uma vez que pode ser consultado no repositório original do projeto do curso.
+- A aplicação web não é construída durante o curso, pois ela não é o foco do conteúdo. Ela é disponibilizada pronta. Optei por não adicionar o código front-end ao meu repositório, pois não foi feito por mim e pode ser consultado no repositório original do projeto do curso.
 
 </div>
 
@@ -47,6 +47,7 @@ Durante o curso, é criada uma API para calcular a melhor condição de surf ent
 - Docker
 - Docker Compose
 - Github Actions
+- OpenAPI
 
 </div>
 
