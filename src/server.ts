@@ -13,6 +13,7 @@ import { OpenAPIV3 } from 'express-openapi-validator/dist/framework/types';
 import { BeachesController } from './controllers/beaches';
 import { UsersController } from './controllers/user';
 import logger from './logger';
+import { apiErrorValidator } from './middlewares/__test__/api-error-validdator.spec';
 
 export class SetupServer extends Server {
   constructor(private port = 3000) {
@@ -24,6 +25,7 @@ export class SetupServer extends Server {
     await this.docsSetup();
     this.setupControllers();
     await this.databaseSetup();
+    this.setupErrorHandles()
   }
 
   private setupExpress(): void {
@@ -35,6 +37,10 @@ export class SetupServer extends Server {
         origin: '*',
       })
     );
+  }
+
+  private setupErrorHandles(): void {
+    this.app.use(apiErrorValidator);
   }
 
   private setupControllers(): void {
@@ -60,8 +66,8 @@ export class SetupServer extends Server {
     this.app.use('/docs', swaggerUi.serve, swaggerUi.setup(apiSchema));
     this.app.use(OpenApiValidator.middleware({
       apiSpec: apiSchema as OpenAPIV3.Document,
-      validateRequests: false, 
-      validateResponses: false, 
+      validateRequests: true, 
+      validateResponses: true, 
     }));
 
   }
@@ -76,3 +82,6 @@ export class SetupServer extends Server {
     });
   }
 }
+
+
+
