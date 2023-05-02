@@ -27,7 +27,6 @@ export class Forecast {
   public async processForecastForBeaches(
     beaches: Beach[]
   ): Promise<TimeForecast[]> {
-    
     try {
       const beachForecast = await this.calculateRating(beaches);
       const timeForecast = this.mapForecastByTime(beachForecast);
