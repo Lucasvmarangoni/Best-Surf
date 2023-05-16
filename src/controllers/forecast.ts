@@ -1,4 +1,9 @@
-import { ClassMiddleware, Controller, Get, Middleware } from '@overnightjs/core';
+import {
+  ClassMiddleware,
+  Controller,
+  Get,
+  Middleware,
+} from '@overnightjs/core';
 import logger from '@src/logger';
 import { AuthMiddleware } from '@src/middlewares/auth';
 import { Beach } from '@src/models/beach';
@@ -17,12 +22,14 @@ const rateLimiter = rateLimit({
     return req.ip;
   },
   handler(_, res: Response): void {
-    res.status(429).send(ApiError.format({
-      code: 429,
-      message: 'Too many requests to the /forecast endpoint ',
-    }));
-  }
-})
+    res.status(429).send(
+      ApiError.format({
+        code: 429,
+        message: 'Too many requests to the /forecast endpoint ',
+      })
+    );
+  },
+});
 
 @Controller('forecast')
 @ClassMiddleware(AuthMiddleware)
