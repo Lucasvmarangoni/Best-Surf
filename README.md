@@ -48,6 +48,7 @@ Durante o curso, é criada uma API para calcular a melhor condição de surf ent
 - Docker Compose
 - Github Actions
 - OpenAPI
+- Express-rate-limit
 
 </div>
 
