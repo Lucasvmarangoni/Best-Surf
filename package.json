@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "yarn build && node dist/src/index.js",
-    "start:local": "ts-node-dev --transpile-only src/index.ts | pino-pretty -c",
+    "start:local": "dotenv -e .env -- ts-node-dev --transpile-only src/index.ts | pino-pretty -c",
     "test": "yarn lint && yarn style:check && yarn test:unit && yarn test:functional",
     "lint": "eslint ./src ./test --ext .ts",
     "lint:fix": "eslint ./src ./test --ext .ts --fix",
@@ -41,6 +41,7 @@
     "body-parser": "^1.19.1",
     "config": "^3.3.6",
     "cors": "^2.8.5",
+    "dotenv-cli": "^7.2.1",
     "express": "^4.17.2",
     "express-openapi-validator": "^4.13.5",
     "express-pino-logger": "^7.0.0",

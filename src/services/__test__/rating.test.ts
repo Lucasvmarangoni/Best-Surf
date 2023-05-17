@@ -1,13 +1,14 @@
-import { Beach, GeoPosition } from '@src/models/beach';
+import { ExistingBeach, GeoPosition } from '@src/models/beach';
 import { Rating } from '../rating';
 
 describe('Rating Service', () => {
-  const defaultBeach: Beach = {
+  const defaultBeach: ExistingBeach = {
+    id: 'fake-id1',
     lat: -33.792726,
     lng: 151.289824,
     name: 'Manly',
     position: GeoPosition.E,
-    user: 'some-user',
+    userId: 'some-user',
   };
 
   const defaultRating = new Rating(defaultBeach);

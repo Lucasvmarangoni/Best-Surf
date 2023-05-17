@@ -27,8 +27,9 @@ process.on('uncaughtException', (error) => {
     server.start();
 
     const exitSignals: NodeJS.Signals[] = ['SIGINT', 'SIGTERM', 'SIGQUIT'];
-    exitSignals.map((sig) =>
-      process.on(sig, async () => {
+    // exitSignals.map((sig) =>
+    for (const exitSignal of exitSignals)
+      process.on(exitSignal, async () => {
         try {
           await server.close();
           logger.info(`App exited with success`);
@@ -37,8 +38,7 @@ process.on('uncaughtException', (error) => {
           logger.error(`App exited with error: ${err}`);
           process.exit(ExitStatus.Failure);
         }
-      })
-    );
+      });
   } catch (err) {
     logger.error(`App existed with error: ${err}`);
     process.exit(ExitStatus.Failure);
