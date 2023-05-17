@@ -1,5 +1,3 @@
-## EM DESENVOLVIMENTO
-
 <div align="center">
 
 # Best Surf
